@@ -1,12 +1,15 @@
-# React + Vite
+# Proyecto 13: Alrededor de los Estados Unidos.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+La página web titulada "Alrededor de los EE.UU.", es una página interactiva en la que los usuarios pueden añadir, eliminar o dar "Like" a las diferentes fotografías que muestran paisajes de los Estados Unidos, así como modificar la información de su perfil (nombre y acerca de mí). Fue creada a partir de un diseño en Figma y desplegada en GitHub Pages.
 
-Currently, two official plugins are available:
+En esta última versión del proyecto se utiliza React para su desarrollo.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Características del proyecto
 
-## Expanding the ESLint configuration
+- HTML5 semántico
+- CSS
+- React-Vite y JSX
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Vínculo de la página desplegada en GitHub Pages
+
+https://pacoz2024.github.io/web_project_around_react/web_project_around_react/index.html
