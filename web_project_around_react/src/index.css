@@ -1,3 +1,13 @@
+@import url("./assets/vendor/normalize.css");
+@import url("./assets/vendor/fonts.css");
+@import url("./blocks/page.css");
+@import url("./blocks/popup.css");
+@import url("./blocks/form.css");
+@import url("./blocks/header.css");
+@import url("./blocks/content.css");
+@import url("./blocks/footer.css");
+
+/*
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -66,3 +76,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+*/
