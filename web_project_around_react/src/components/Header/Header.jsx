@@ -1,6 +1,6 @@
 import LogoAround from "../../assets/images/Logo.svg";
 
-function Header() {
+export default function Header() {
   return (
     <header className="header">
       <div className="header__line">
@@ -13,5 +13,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;
