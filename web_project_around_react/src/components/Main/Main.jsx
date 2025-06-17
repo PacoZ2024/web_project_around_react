@@ -1,9 +1,7 @@
 import { useState } from "react";
 import EditImageProfile from "../../assets/images/Edit_Image_Profile.svg";
-import EditButton from "../../assets/images/Edit_button.svg";
-import AddButton from "../../assets/images/Add_button.svg";
-import DeleteButton from "../../assets/images/Delete_button.svg";
-import Like from "../../assets/images/Like.svg";
+import EditProfileButton from "../../assets/images/Edit_button.svg";
+import AddNewPlaceButton from "../../assets/images/Add_button.svg";
 import NewCard from "./components/Popup/form/NewCard/NewCard.jsx";
 import EditProfile from "./components/Popup/form/EditProfile/EditProfile.jsx";
 import EditAvatar from "./components/Popup/form/EditAvatar/EditAvatar.jsx";
@@ -11,15 +9,9 @@ import Popup from "./components/Popup/Popup.jsx";
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
-  const newCardPopup = { title: "Nuevo Lugar", children: <NewCard /> };
-  const editProfilePopup = {
-    title: "Editar Perfil",
-    children: <EditProfile />,
-  };
-  const editAvatarPopup = {
-    title: "Cambiar foto de perfil",
-    children: <EditAvatar />,
-  };
+  const newCardPopup = { children: <NewCard /> };
+  const editProfilePopup = { children: <EditProfile /> };
+  const editAvatarPopup = { children: <EditAvatar /> };
 
   function handleOpenPopup(popup) {
     setPopup(popup);
@@ -64,7 +56,7 @@ export default function Main() {
             >
               <img
                 className="content__edit-profile-button-label"
-                src={EditButton}
+                src={EditProfileButton}
                 alt="Botón de edición de perfil"
               />
             </div>
@@ -79,42 +71,12 @@ export default function Main() {
         >
           <img
             className="content__add-new-place-button-label"
-            src={AddButton}
+            src={AddNewPlaceButton}
             alt="Botón para añadir nuevos lugares"
           />
         </div>
       </section>
-      <section className="content__images">
-        <template id="card-template">
-          <div className="content__card">
-            <div className="content__image-card">
-              <img className="content__image" />
-            </div>
-            <div className="content__delete-button">
-              <img
-                className="content__delete-button-label"
-                src={DeleteButton}
-                alt="Botón borrar"
-              />
-            </div>
-            <div className="content__image-tag">
-              <p className="content__image-title"></p>
-              <div className="content__like-button">
-                <img
-                  className="content__like-button-label"
-                  src={Like}
-                  alt="Botón me gusta"
-                />
-              </div>
-            </div>
-          </div>
-        </template>
-      </section>
-      {popup && (
-        <Popup onClose={handleClosePopup} title={popup.title}>
-          {popup.children}
-        </Popup>
-      )}
+      {popup && <Popup onClose={handleClosePopup}>{popup.children}</Popup>}
     </main>
   );
 }

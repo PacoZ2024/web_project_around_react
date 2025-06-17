@@ -4,7 +4,6 @@
   background-color: #ffffff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
-  position: relative;
 }
 
 .form__close-button {
@@ -101,6 +100,10 @@
 
 .form__field-link-image-profile {
   margin: 54px 0 7px;
+}
+
+.form__field-link-image-profile:focus {
+  margin: 51.5px -3px 4.5px;
 }
 
 #form__delete-confirmation {

@@ -1,5 +1,3 @@
-import CloseButton from "../../../../../../assets/images/Close_button.svg";
-
 export default function EditProfile() {
   return (
     <form
@@ -8,13 +6,6 @@ export default function EditProfile() {
       name="formEditProfile"
       noValidate
     >
-      <div className="form__close-button">
-        <img
-          className="form__label-close-button"
-          src={CloseButton}
-          alt="Botón cerrar formulario para editar perfil"
-        />
-      </div>
       <fieldset className="form__content">
         <legend className="form__title">Editar perfil</legend>
         <input
@@ -23,6 +14,7 @@ export default function EditProfile() {
           name="fieldName"
           type="text"
           placeholder="Nombre"
+          defaultValue="Jacques Cousteau"
           minLength="2"
           maxLength="40"
           required
@@ -36,6 +28,7 @@ export default function EditProfile() {
           placeholder="Acerca de mí"
           minLength="2"
           maxLength="200"
+          defaultValue="Explorador"
           required
         />
         <span className="about-me-input-error form__field-error"></span>

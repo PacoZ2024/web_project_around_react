@@ -1,5 +1,3 @@
-import CloseButton from "../../../../../../assets/images/Close_button.svg";
-
 export default function EditAvatar() {
   return (
     <form
@@ -8,13 +6,6 @@ export default function EditAvatar() {
       name="formEditImageProfile"
       noValidate
     >
-      <div className="form__close-button">
-        <img
-          className="form__label-close-button"
-          src={CloseButton}
-          alt="Botón cerrar formulario para editar imagen de perfil"
-        />
-      </div>
       <fieldset className="form__content">
         <legend className="form__title">Cambiar foto de perfil</legend>
         <input
@@ -25,7 +16,11 @@ export default function EditAvatar() {
           required
         />
         <span className="link-image-profile-error form__field-error"></span>
-        <button className="form__button" type="submit">
+        <button
+          className="form__button form__button-disabled"
+          type="submit"
+          disabled={true}
+        >
           Guardar
         </button>
       </fieldset>

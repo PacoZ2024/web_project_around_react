@@ -1,5 +1,3 @@
-import CloseButton from "../../../../../../assets/images/Close_button.svg";
-
 export default function NewCard() {
   return (
     <form
@@ -8,13 +6,6 @@ export default function NewCard() {
       name="formAddNewPlace"
       noValidate
     >
-      <div className="form__close-button">
-        <img
-          className="form__label-close-button"
-          src={CloseButton}
-          alt="Botón cerrar formulario para añadir un nuevo lugar"
-        />
-      </div>
       <fieldset className="form__content">
         <legend className="form__title">Nuevo lugar</legend>
         <input
@@ -35,7 +26,11 @@ export default function NewCard() {
           required
         />
         <span className="link-image-error form__field-error"></span>
-        <button className="form__button" type="submit">
+        <button
+          className="form__button form__button-disabled"
+          type="submit"
+          disabled={true}
+        >
           Crear
         </button>
       </fieldset>
