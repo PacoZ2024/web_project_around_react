@@ -1,12 +1,33 @@
+import { useState } from "react";
 import DeleteImageButton from "../../../../assets/images/Delete_button.svg";
 import LikeButton from "../../../../assets/images/Like.svg";
+import ImagePopup from "../Popup/image/ImagePopup.jsx";
+import Popup from "../Popup/Popup.jsx";
 
 export default function (props) {
+  const [popup, setPopup] = useState(null);
   const { name, link, isLiked } = props.card;
+  const imageComponent = { children: <ImagePopup card={props.card} /> };
+
+  function handleOpenPopup(popup) {
+    setPopup(popup);
+  }
+
+  function handleClosePopup() {
+    setPopup(null);
+  }
+
   return (
     <div className="content__card">
       <div className="content__image-card">
-        <img className="content__image" src={link} alt={name} />
+        <img
+          className="content__image"
+          src={link}
+          alt={name}
+          onClick={() => {
+            handleOpenPopup(imageComponent);
+          }}
+        />
       </div>
       <div className="content__delete-button">
         <img
@@ -19,12 +40,17 @@ export default function (props) {
         <p className="content__image-title">{name}</p>
         <div className="content__like-button">
           <img
-            className="content__like-button-label"
+            className={
+              isLiked
+                ? "content__like-button-label-active"
+                : "content__like-button-label"
+            }
             src={LikeButton}
             alt="Botón me gusta"
           />
         </div>
       </div>
+      {popup && <Popup onClose={handleClosePopup}>{popup.children}</Popup>}
     </div>
   );
 }
