@@ -1,11 +1,6 @@
 export default function NewCard() {
   return (
-    <form
-      className="form"
-      id="form__add-new-place"
-      name="formAddNewPlace"
-      noValidate
-    >
+    <form className="form" noValidate>
       <fieldset className="form__content">
         <legend className="form__title">Nuevo lugar</legend>
         <input

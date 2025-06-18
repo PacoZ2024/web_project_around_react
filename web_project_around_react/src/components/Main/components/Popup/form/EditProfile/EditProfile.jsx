@@ -1,17 +1,11 @@
 export default function EditProfile() {
   return (
-    <form
-      className="form"
-      id="form__edit-profile"
-      name="formEditProfile"
-      noValidate
-    >
+    <form className="form" noValidate>
       <fieldset className="form__content">
         <legend className="form__title">Editar perfil</legend>
         <input
           id="name-input"
           className="form__field form__field-name"
-          name="fieldName"
           type="text"
           placeholder="Nombre"
           defaultValue="Jacques Cousteau"
@@ -23,7 +17,6 @@ export default function EditProfile() {
         <input
           id="about-me-input"
           className="form__field form__field-about-me"
-          name="fieldAboutMe"
           type="text"
           placeholder="Acerca de mí"
           minLength="2"

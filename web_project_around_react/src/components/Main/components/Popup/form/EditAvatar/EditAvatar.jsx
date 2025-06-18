@@ -1,11 +1,6 @@
 export default function EditAvatar() {
   return (
-    <form
-      className="form"
-      id="form__edit-image-profile"
-      name="formEditImageProfile"
-      noValidate
-    >
+    <form className="form" id="form__edit-image-profile" noValidate>
       <fieldset className="form__content">
         <legend className="form__title">Cambiar foto de perfil</legend>
         <input

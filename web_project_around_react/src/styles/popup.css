@@ -25,26 +25,6 @@
   position: relative;
 }
 
-.popup__close-button {
-  box-sizing: border-box;
-  height: 40px;
-  width: 40px;
-  border: none;
-  position: absolute;
-  right: -40px;
-  top: -40px;
-}
-
-.popup__label-close-button {
-  height: 40px;
-  width: 40px;
-}
-
-.popup__label-close-button:hover {
-  cursor: pointer;
-  opacity: 0.6;
-}
-
 .popup__image {
   max-height: 540px;
   max-width: 816px;
@@ -71,18 +51,6 @@
 @media screen and (max-width: 624px) {
   .popup__image {
     max-width: 362px;
-  }
-
-  .popup__label-close-button {
-    width: 30px;
-    height: 30px;
-  }
-
-  .popup__close-button {
-    width: 30px;
-    height: 30px;
-    right: -36px;
-    top: -36px;
   }
 }
 
