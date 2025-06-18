@@ -226,6 +226,10 @@
   background-position: center;
 }
 
+.content__like-button-label-active:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 880px) {
   .content__profile {
     max-width: 581px;
