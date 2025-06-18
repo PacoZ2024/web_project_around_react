@@ -7,7 +7,7 @@ import Popup from "../Popup/Popup.jsx";
 export default function (props) {
   const [popup, setPopup] = useState(null);
   const { name, link, isLiked } = props.card;
-  const [Liked, setLiked] = useState(isLiked);
+  const [liked, setLiked] = useState(isLiked);
   const imageComponent = { children: <ImagePopup card={props.card} /> };
 
   function handleOpenPopup(popup) {
@@ -19,7 +19,7 @@ export default function (props) {
   }
 
   function handleLiked() {
-    Liked ? setLiked(false) : setLiked(true);
+    liked ? setLiked(false) : setLiked(true);
   }
 
   return (
@@ -46,7 +46,7 @@ export default function (props) {
         <div className="content__like-button">
           <img
             className={
-              Liked
+              liked
                 ? "content__like-button-label-active"
                 : "content__like-button-label"
             }
