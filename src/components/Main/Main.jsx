@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import React from "react";
 import EditImageProfile from "../../assets/images/Edit_Image_Profile.svg";
 import EditProfileButton from "../../assets/images/Edit_button.svg";
 import AddNewPlaceButton from "../../assets/images/Add_button.svg";
@@ -8,6 +9,7 @@ import EditAvatar from "./components/Popup/form/EditAvatar/EditAvatar.jsx";
 import Popup from "./components/Popup/Popup.jsx";
 import Card from "./components/Card/Card.jsx";
 import { api } from "../../utils/api.js";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 
 export default function Main() {
   const [cards, setCards] = useState([]);
@@ -15,6 +17,7 @@ export default function Main() {
   const newCardPopup = { children: <NewCard /> };
   const editProfilePopup = { children: <EditProfile /> };
   const editAvatarPopup = { children: <EditAvatar /> };
+  const currentUser = React.useContext(CurrentUserContext);
 
   function handleOpenPopup(popup) {
     setPopup(popup);
@@ -42,9 +45,7 @@ export default function Main() {
           <img
             className="content__avatar-image"
             alt="Imagen de perfil"
-            src={
-              "https://practicum-content.s3.us-west-1.amazonaws.com/frontend-developer/common/avatar.jpg"
-            }
+            src={currentUser.avatar}
           />
           <div
             className="content__icon-edit-image-profile-container"
@@ -61,7 +62,7 @@ export default function Main() {
         </div>
         <div className="content__profile-info">
           <div className="content__profile-distribution">
-            <h1 className="content__profile-name">Jacques Cousteau</h1>
+            <h1 className="content__profile-name">{currentUser.name}</h1>
             <div
               className="content__profile-edit-button"
               onClick={() => {
@@ -75,7 +76,7 @@ export default function Main() {
               />
             </div>
           </div>
-          <p className="content__about-me">Explorador</p>
+          <p className="content__about-me">{currentUser.about}</p>
         </div>
         <div
           className="content__new-place-add-button"
