@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EditImageProfile from "../../assets/images/Edit_Image_Profile.svg";
 import EditProfileButton from "../../assets/images/Edit_button.svg";
 import AddNewPlaceButton from "../../assets/images/Add_button.svg";
@@ -7,59 +7,10 @@ import EditProfile from "./components/Popup/form/EditProfile/EditProfile.jsx";
 import EditAvatar from "./components/Popup/form/EditAvatar/EditAvatar.jsx";
 import Popup from "./components/Popup/Popup.jsx";
 import Card from "./components/Card/Card.jsx";
-
-const cards = [
-  {
-    isLiked: false,
-    _id: "5d1f0611d321eb4bdcd707dd",
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-    owner: "5d1f0611d321eb4bdcd707dd",
-    createdAt: "2019-07-05T08:10:57.741Z",
-  },
-  {
-    isLiked: false,
-    _id: "5d1f064ed321eb4bdcd707de",
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-    owner: "5d1f0611d321eb4bdcd707dd",
-    createdAt: "2019-07-05T08:11:58.324Z",
-  },
-  {
-    isLiked: false,
-    _id: "5d1f0611d123eb4bdcd707dd",
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-    owner: "5d1f0611d321eb4bdcd707dd",
-    createdAt: "2019-07-05T08:10:57.741Z",
-  },
-  {
-    isLiked: true,
-    _id: "5d1f064ed123eb4bdcd707de",
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-    owner: "5d1f0611d321eb4bdcd707dd",
-    createdAt: "2019-07-05T08:11:58.324Z",
-  },
-  {
-    isLiked: true,
-    _id: "5d1f0611d321eb4bdcd070dd",
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-    owner: "5d1f0611d321eb4bdcd707dd",
-    createdAt: "2019-07-05T08:10:57.741Z",
-  },
-  {
-    isLiked: true,
-    _id: "5d1f064ed321eb4bdcd070de",
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-    owner: "5d1f0611d321eb4bdcd707dd",
-    createdAt: "2019-07-05T08:11:58.324Z",
-  },
-];
+import { api } from "../../utils/api.js";
 
 export default function Main() {
+  const [cards, setCards] = useState([]);
   const [popup, setPopup] = useState(null);
   const newCardPopup = { children: <NewCard /> };
   const editProfilePopup = { children: <EditProfile /> };
@@ -72,6 +23,17 @@ export default function Main() {
   function handleClosePopup() {
     setPopup(null);
   }
+
+  useEffect(() => {
+    api
+      .getInitialCards()
+      .then((data) => {
+        setCards(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <main className="content">
