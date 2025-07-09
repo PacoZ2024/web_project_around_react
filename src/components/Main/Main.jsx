@@ -38,6 +38,25 @@ export default function Main() {
       });
   }, []);
 
+  async function handleCardLike(card) {
+    // Verifica una vez más si a esta tarjeta ya les has dado like
+    const isLiked = card.isLiked;
+
+    // Envía una solicitud a la API y obtén los datos actualizados de la tarjeta
+    await api
+      .isLiked(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <main className="content">
       <section className="content__profile">
@@ -93,7 +112,7 @@ export default function Main() {
       </section>
       <section className="content__images">
         {cards.map((card) => (
-          <Card key={card._id} card={card} />
+          <Card key={card._id} card={card} onCardLike={handleCardLike} />
         ))}
       </section>
       {popup && <Popup onClose={handleClosePopup}>{popup.children}</Popup>}

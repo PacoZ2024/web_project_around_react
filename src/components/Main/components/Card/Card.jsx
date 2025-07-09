@@ -19,7 +19,8 @@ export default function (props) {
     setPopup(null);
   }
 
-  function handleLiked() {
+  function handleLikeClick() {
+    props.onCardLike(props.card);
     liked ? setLiked(false) : setLiked(true);
   }
 
@@ -65,7 +66,7 @@ export default function (props) {
             src={LikeButton}
             alt="Botón me gusta"
             onClick={() => {
-              handleLiked();
+              handleLikeClick();
             }}
           />
         </div>
