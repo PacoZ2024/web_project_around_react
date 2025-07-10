@@ -39,22 +39,35 @@ export default function Main() {
   }, []);
 
   async function handleCardLike(card) {
-    // Verifica una vez más si a esta tarjeta ya les has dado like
     const isLiked = card.isLiked;
 
-    // Envía una solicitud a la API y obtén los datos actualizados de la tarjeta
-    await api
-      .isLiked(card._id, !isLiked)
-      .then((newCard) => {
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard._id === card._id ? newCard : currentCard
-          )
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (isLiked) {
+      await api
+        .deleteLiked(card._id)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((currentCard) =>
+              currentCard._id === card._id ? newCard : currentCard
+            )
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      await api
+        .isLiked(card._id)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((currentCard) =>
+              currentCard._id === card._id ? newCard : currentCard
+            )
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   return (
