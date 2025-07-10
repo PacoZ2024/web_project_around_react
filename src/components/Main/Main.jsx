@@ -11,21 +11,12 @@ import Card from "./components/Card/Card.jsx";
 import { api } from "../../utils/api.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 
-export default function Main() {
+export default function Main(props) {
   const [cards, setCards] = useState([]);
-  const [popup, setPopup] = useState(null);
   const newCardPopup = { children: <NewCard /> };
   const editProfilePopup = { children: <EditProfile /> };
   const editAvatarPopup = { children: <EditAvatar /> };
-  const currentUser = React.useContext(CurrentUserContext);
-
-  function handleOpenPopup(popup) {
-    setPopup(popup);
-  }
-
-  function handleClosePopup() {
-    setPopup(null);
-  }
+  const { currentUser } = React.useContext(CurrentUserContext);
 
   useEffect(() => {
     api
@@ -97,7 +88,7 @@ export default function Main() {
           <div
             className="content__icon-edit-image-profile-container"
             onClick={() => {
-              handleOpenPopup(editAvatarPopup);
+              props.onOpenPopup(editAvatarPopup);
             }}
           >
             <img
@@ -113,7 +104,7 @@ export default function Main() {
             <div
               className="content__profile-edit-button"
               onClick={() => {
-                handleOpenPopup(editProfilePopup);
+                props.onOpenPopup(editProfilePopup);
               }}
             >
               <img
@@ -128,7 +119,7 @@ export default function Main() {
         <div
           className="content__new-place-add-button"
           onClick={() => {
-            handleOpenPopup(newCardPopup);
+            props.onOpenPopup(newCardPopup);
           }}
         >
           <img
@@ -148,7 +139,9 @@ export default function Main() {
           />
         ))}
       </section>
-      {popup && <Popup onClose={handleClosePopup}>{popup.children}</Popup>}
+      {props.popup && (
+        <Popup onClose={props.onClosePopup}>{props.popup.children}</Popup>
+      )}
     </main>
   );
 }
