@@ -6,7 +6,6 @@ import Popup from "../Popup/Popup.jsx";
 
 export default function (props) {
   const [popup, setPopup] = useState(null);
-  const [isMounted, setIsMounted] = useState(true);
   const { name, link, isLiked } = props.card;
   const [liked, setLiked] = useState(isLiked);
   const imageComponent = { children: <ImagePopup card={props.card} /> };
@@ -24,12 +23,8 @@ export default function (props) {
     liked ? setLiked(false) : setLiked(true);
   }
 
-  function handleDeleteCard() {
-    setIsMounted(false);
-  }
-
-  if (!isMounted) {
-    return null;
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
   }
 
   return (
@@ -50,7 +45,7 @@ export default function (props) {
           src={DeleteImageButton}
           alt="Botón borrar imagen"
           onClick={() => {
-            handleDeleteCard();
+            handleDeleteClick();
           }}
         />
       </div>

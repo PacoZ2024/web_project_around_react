@@ -70,6 +70,21 @@ export default function Main() {
     }
   }
 
+  async function handleCardDelete(card) {
+    await api
+      .deleteCard(card._id)
+      .then(
+        setCards((state) =>
+          state.filter((currentCard) => {
+            return currentCard._id != card._id;
+          })
+        )
+      )
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <main className="content">
       <section className="content__profile">
@@ -125,7 +140,12 @@ export default function Main() {
       </section>
       <section className="content__images">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardLike={handleCardLike} />
+          <Card
+            key={card._id}
+            card={card}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+          />
         ))}
       </section>
       {popup && <Popup onClose={handleClosePopup}>{popup.children}</Popup>}
