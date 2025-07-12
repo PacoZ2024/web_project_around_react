@@ -40,8 +40,22 @@ export default function App() {
     })();
   };
 
+  const handleUpdateAvatar = (data) => {
+    (async () => {
+      await api
+        .setUserAvatar(data)
+        .then((newData) => {
+          setCurrentUser(newData);
+          handleClosePopup();
+        })
+        .catch((err) => console.log(err));
+    })();
+  };
+
   return (
-    <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
+    <CurrentUserContext.Provider
+      value={{ currentUser, handleUpdateUser, handleUpdateAvatar }}
+    >
       <div className="page">
         <Header />
         <Main
