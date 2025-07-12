@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import React from "react";
+import { useState, useEffect, useContext } from "react";
 import EditImageProfile from "../../assets/images/Edit_Image_Profile.svg";
 import EditProfileButton from "../../assets/images/Edit_button.svg";
 import AddNewPlaceButton from "../../assets/images/Add_button.svg";
@@ -16,18 +15,7 @@ export default function Main(props) {
   const newCardPopup = { children: <NewCard /> };
   const editProfilePopup = { children: <EditProfile /> };
   const editAvatarPopup = { children: <EditAvatar /> };
-  const { currentUser } = React.useContext(CurrentUserContext);
-
-  useEffect(() => {
-    (async () => {
-      await api
-        .getInitialCards()
-        .then((data) => {
-          setCards(data);
-        })
-        .catch((err) => console.log(err));
-    })();
-  }, []);
+  const { currentUser } = useContext(CurrentUserContext);
 
   async function handleCardLike(card) {
     const isLiked = card.isLiked;
@@ -69,6 +57,17 @@ export default function Main(props) {
       )
       .catch((err) => console.log(err));
   }
+
+  useEffect(() => {
+    (async () => {
+      await api
+        .getInitialCards()
+        .then((data) => {
+          setCards(data);
+        })
+        .catch((err) => console.log(err));
+    })();
+  }, []);
 
   return (
     <main className="content">

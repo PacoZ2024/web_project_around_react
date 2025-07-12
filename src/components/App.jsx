@@ -8,6 +8,28 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 export default function App() {
   const [popup, setPopup] = useState(null);
   const [currentUser, setCurrentUser] = useState([]);
+  const handleUpdateUser = (data) => {
+    (async () => {
+      await api
+        .setUserInfo(data)
+        .then((newData) => {
+          setCurrentUser(newData);
+          handleClosePopup();
+        })
+        .catch((err) => console.log(err));
+    })();
+  };
+  const handleUpdateAvatar = (data) => {
+    (async () => {
+      await api
+        .setUserAvatar(data)
+        .then((newData) => {
+          setCurrentUser(newData);
+          handleClosePopup();
+        })
+        .catch((err) => console.log(err));
+    })();
+  };
 
   function handleOpenPopup(popup) {
     setPopup(popup);
@@ -27,30 +49,6 @@ export default function App() {
         .catch((err) => console.log(err));
     })();
   }, []);
-
-  const handleUpdateUser = (data) => {
-    (async () => {
-      await api
-        .setUserInfo(data)
-        .then((newData) => {
-          setCurrentUser(newData);
-          handleClosePopup();
-        })
-        .catch((err) => console.log(err));
-    })();
-  };
-
-  const handleUpdateAvatar = (data) => {
-    (async () => {
-      await api
-        .setUserAvatar(data)
-        .then((newData) => {
-          setCurrentUser(newData);
-          handleClosePopup();
-        })
-        .catch((err) => console.log(err));
-    })();
-  };
 
   return (
     <CurrentUserContext.Provider
