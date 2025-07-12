@@ -41,11 +41,11 @@ class Api {
     });
   }
 
-  addNewPlace(title, image) {
+  addNewPlace(card) {
     return fetch(`${this.baseUrl}/cards/`, {
       method: "POST",
       headers: this.headers,
-      body: JSON.stringify({ name: title, link: image }),
+      body: JSON.stringify({ name: card.name, link: card.link }),
     }).then((res) => {
       if (res.ok) {
         return res.json();

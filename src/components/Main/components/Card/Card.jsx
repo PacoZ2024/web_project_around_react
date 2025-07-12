@@ -4,7 +4,7 @@ import LikeButton from "../../../../assets/images/Like.svg";
 import ImagePopup from "../Popup/image/ImagePopup.jsx";
 import Popup from "../Popup/Popup.jsx";
 
-export default function (props) {
+export default function Card(props) {
   const [popup, setPopup] = useState(null);
   const { name, link, isLiked } = props.card;
   const [liked, setLiked] = useState(isLiked);
