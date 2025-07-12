@@ -19,9 +19,12 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      await api.getUserInfo().then((data) => {
-        setCurrentUser(data);
-      });
+      await api
+        .getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .catch((err) => console.log(err));
     })();
   }, []);
 

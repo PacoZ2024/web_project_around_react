@@ -19,14 +19,14 @@ export default function Main(props) {
   const { currentUser } = React.useContext(CurrentUserContext);
 
   useEffect(() => {
-    api
-      .getInitialCards()
-      .then((data) => {
-        setCards(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    (async () => {
+      await api
+        .getInitialCards()
+        .then((data) => {
+          setCards(data);
+        })
+        .catch((err) => console.log(err));
+    })();
   }, []);
 
   async function handleCardLike(card) {
@@ -42,9 +42,7 @@ export default function Main(props) {
             )
           );
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => console.log(err));
     } else {
       await api
         .isLiked(card._id)
@@ -55,9 +53,7 @@ export default function Main(props) {
             )
           );
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => console.log(err));
     }
   }
 
@@ -71,9 +67,7 @@ export default function Main(props) {
           })
         )
       )
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   }
 
   return (
