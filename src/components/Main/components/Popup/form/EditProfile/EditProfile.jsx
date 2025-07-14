@@ -5,11 +5,11 @@ export default function EditProfile() {
   const { currentUser, handleUpdateUser } = useContext(CurrentUserContext);
 
   const [name, setName] = useState(currentUser.name);
-  const [description, setDescription] = useState(currentUser.about);
+  const [about, setAbout] = useState(currentUser.about);
   const [isNameValid, setIsNameValid] = useState(true);
-  const [isDescriptionValid, setIsDescriptionValid] = useState(true);
+  const [isAboutValid, setIsAboutValid] = useState(true);
   const [nameMessageError, setNameMessageError] = useState("");
-  const [descriptionMessageError, setDescriptionMessageError] = useState("");
+  const [aboutMessageError, setAboutMessageError] = useState("");
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -17,15 +17,15 @@ export default function EditProfile() {
     setNameMessageError(event.target.validationMessage);
   };
 
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
-    setIsDescriptionValid(event.target.validity.valid);
-    setDescriptionMessageError(event.target.validationMessage);
+  const handleAboutChange = (event) => {
+    setAbout(event.target.value);
+    setIsAboutValid(event.target.validity.valid);
+    setAboutMessageError(event.target.validationMessage);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleUpdateUser({ name, about: description });
+    handleUpdateUser({ name, about });
   };
 
   return (
@@ -53,20 +53,20 @@ export default function EditProfile() {
           placeholder="Acerca de mí"
           minLength="2"
           maxLength="200"
-          value={description}
+          value={about}
           required
-          onChange={handleDescriptionChange}
+          onChange={handleAboutChange}
         />
         <span className="about-me-input-error form__field-error">
-          {descriptionMessageError}
+          {aboutMessageError}
         </span>
         <button
           className={`form__button ${
-            isDescriptionValid && isNameValid ? "" : "form__button-disabled"
+            isAboutValid && isNameValid ? "" : "form__button-disabled"
           }`}
           type="submit"
           onClick={handleSubmit}
-          disabled={!(isDescriptionValid && isNameValid)}
+          disabled={!(isAboutValid && isNameValid)}
         >
           Guardar
         </button>

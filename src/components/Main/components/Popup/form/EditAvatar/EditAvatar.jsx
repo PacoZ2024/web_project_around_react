@@ -8,7 +8,7 @@ export default function EditAvatar() {
   const [isAvatarValid, setIsAvatarValid] = useState(false);
   const [avatarMessageError, setAvatarMessageError] = useState("");
 
-  const handleInputChange = (event) => {
+  const handleAvatarChange = (event) => {
     setAvatar(event.target.value);
     setIsAvatarValid(event.target.validity.valid);
     setAvatarMessageError(event.target.validationMessage);
@@ -24,7 +24,7 @@ export default function EditAvatar() {
       <fieldset className="form__content">
         <legend className="form__title">Cambiar foto de perfil</legend>
         <input
-          onChange={handleInputChange}
+          onChange={handleAvatarChange}
           id="link-image-profile"
           className="form__field form__field-link-image-profile"
           type="url"

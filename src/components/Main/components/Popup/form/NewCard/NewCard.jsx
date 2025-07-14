@@ -17,7 +17,7 @@ export default function NewCard() {
     setNameMessageError(event.target.validationMessage);
   };
 
-  const handleLinkCardChange = (event) => {
+  const handleLinkChange = (event) => {
     setLinkCard(event.target.value);
     setIsLinkValid(event.target.validity.valid);
     setLinkMessageError(event.target.validationMessage);
@@ -46,7 +46,7 @@ export default function NewCard() {
           {nameMessageError}
         </span>
         <input
-          onChange={handleLinkCardChange}
+          onChange={handleLinkChange}
           id="link-image"
           className="form__field form__field-link-image"
           type="url"
