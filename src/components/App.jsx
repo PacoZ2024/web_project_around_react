@@ -118,6 +118,7 @@ export default function App() {
         handleUpdateUser,
         handleUpdateAvatar,
         handleAddPlaceSubmit,
+        handleCardDelete,
       }}
     >
       <div className="page">
@@ -128,7 +129,6 @@ export default function App() {
           popup={popup}
           cards={cards}
           onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
         />
         <Footer />
       </div>

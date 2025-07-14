@@ -2,6 +2,7 @@ import { useState } from "react";
 import DeleteImageButton from "../../../../assets/images/Delete_button.svg";
 import LikeButton from "../../../../assets/images/Like.svg";
 import ImagePopup from "../Popup/image/ImagePopup.jsx";
+import WithConfirmation from "../Popup/form/WithConfirmation/WithConfirmation.jsx";
 import Popup from "../Popup/Popup.jsx";
 
 export default function Card(props) {
@@ -9,6 +10,9 @@ export default function Card(props) {
   const { name, link, isLiked } = props.card;
   const [liked, setLiked] = useState(isLiked);
   const imageComponent = { children: <ImagePopup card={props.card} /> };
+  const confirmationDelete = {
+    children: <WithConfirmation card={props.card} />,
+  };
 
   function handleOpenPopup(popup) {
     setPopup(popup);
@@ -21,10 +25,6 @@ export default function Card(props) {
   function handleLikeClick() {
     props.onCardLike(props.card);
     liked ? setLiked(false) : setLiked(true);
-  }
-
-  function handleDeleteClick() {
-    props.onCardDelete(props.card);
   }
 
   return (
@@ -45,7 +45,7 @@ export default function Card(props) {
           src={DeleteImageButton}
           alt="Botón borrar imagen"
           onClick={() => {
-            handleDeleteClick();
+            handleOpenPopup(confirmationDelete);
           }}
         />
       </div>

@@ -70,12 +70,7 @@ export default function Main(props) {
       </section>
       <section className="content__images">
         {props.cards.map((card) => (
-          <Card
-            key={card._id}
-            card={card}
-            onCardLike={props.onCardLike}
-            onCardDelete={props.onCardDelete}
-          />
+          <Card key={card._id} card={card} onCardLike={props.onCardLike} />
         ))}
       </section>
       {props.popup && (
