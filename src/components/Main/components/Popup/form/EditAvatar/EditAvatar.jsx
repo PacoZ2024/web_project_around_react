@@ -31,7 +31,7 @@ export default function EditAvatar() {
         />
         <span className="link-image-profile-error form__field-error"></span>
         <button
-          className={`form__button ${!isValid ? "form__button-disabled" : ""}`}
+          className={`form__button ${isValid ? "" : "form__button-disabled"}`}
           type="submit"
           onClick={handleSubmit}
           disabled={!isValid}

@@ -6,16 +6,17 @@ export default function EditProfile() {
 
   const [name, setName] = useState(currentUser.name);
   const [description, setDescription] = useState(currentUser.about);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isNameValid, setIsNameValid] = useState(true);
+  const [isDescriptionValid, setIsDescriptionValid] = useState(true);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
-    setIsButtonDisabled(name.minLength || description.minLength);
+    setIsNameValid(event.target.validity.valid);
   };
 
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
-    setIsButtonDisabled(name.minLength || description.minLength);
+    setIsDescriptionValid(event.target.validity.valid);
   };
 
   const handleSubmit = (event) => {
@@ -53,13 +54,11 @@ export default function EditProfile() {
         <span className="about-me-input-error form__field-error"></span>
         <button
           className={`form__button ${
-            name.length < 2 || description.length < 2
-              ? "form__button-disabled"
-              : ""
+            isDescriptionValid && isNameValid ? "" : "form__button-disabled"
           }`}
           type="submit"
           onClick={handleSubmit}
-          disabled={isButtonDisabled}
+          disabled={!(isDescriptionValid && isNameValid)}
         >
           Guardar
         </button>
