@@ -8,15 +8,19 @@ export default function EditProfile() {
   const [description, setDescription] = useState(currentUser.about);
   const [isNameValid, setIsNameValid] = useState(true);
   const [isDescriptionValid, setIsDescriptionValid] = useState(true);
+  const [nameMessageError, setNameMessageError] = useState("");
+  const [descriptionMessageError, setDescriptionMessageError] = useState("");
 
   const handleNameChange = (event) => {
     setName(event.target.value);
     setIsNameValid(event.target.validity.valid);
+    setNameMessageError(event.target.validationMessage);
   };
 
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
     setIsDescriptionValid(event.target.validity.valid);
+    setDescriptionMessageError(event.target.validationMessage);
   };
 
   const handleSubmit = (event) => {
@@ -39,7 +43,9 @@ export default function EditProfile() {
           required
           onChange={handleNameChange}
         />
-        <span className="name-input-error form__field-error"></span>
+        <span className="name-input-error form__field-error">
+          {nameMessageError}
+        </span>
         <input
           id="about-me-input"
           className="form__field form__field-about-me"
@@ -51,7 +57,9 @@ export default function EditProfile() {
           required
           onChange={handleDescriptionChange}
         />
-        <span className="about-me-input-error form__field-error"></span>
+        <span className="about-me-input-error form__field-error">
+          {descriptionMessageError}
+        </span>
         <button
           className={`form__button ${
             isDescriptionValid && isNameValid ? "" : "form__button-disabled"

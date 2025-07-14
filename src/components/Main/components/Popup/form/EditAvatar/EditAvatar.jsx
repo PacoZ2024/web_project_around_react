@@ -2,18 +2,21 @@ import { useState, useContext } from "react";
 import { CurrentUserContext } from "../../../../../../contexts/CurrentUserContext.js";
 
 export default function EditAvatar() {
-  const [isValid, setIsValid] = useState(false);
   const { handleUpdateAvatar } = useContext(CurrentUserContext);
-  const [avatarImage, setAvatarImage] = useState("");
+
+  const [avatar, setAvatar] = useState("");
+  const [isAvatarValid, setIsAvatarValid] = useState(false);
+  const [avatarMessageError, setAvatarMessageError] = useState("");
 
   const handleInputChange = (event) => {
-    setAvatarImage(event.target.value);
-    setIsValid(event.target.validity.valid);
+    setAvatar(event.target.value);
+    setIsAvatarValid(event.target.validity.valid);
+    setAvatarMessageError(event.target.validationMessage);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleUpdateAvatar({ avatar: avatarImage });
+    handleUpdateAvatar({ avatar });
   };
 
   return (
@@ -29,12 +32,16 @@ export default function EditAvatar() {
           required
           pattern="https?://.+"
         />
-        <span className="link-image-profile-error form__field-error"></span>
+        <span className="link-image-profile-error form__field-error">
+          {avatarMessageError}
+        </span>
         <button
-          className={`form__button ${isValid ? "" : "form__button-disabled"}`}
+          className={`form__button ${
+            isAvatarValid ? "" : "form__button-disabled"
+          }`}
           type="submit"
           onClick={handleSubmit}
-          disabled={!isValid}
+          disabled={!isAvatarValid}
         >
           Guardar
         </button>

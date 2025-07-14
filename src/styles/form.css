@@ -126,11 +126,6 @@
   font-size: 12px;
   line-height: 15px;
   color: #ff0000;
-  opacity: 0;
-}
-
-.form__field-error_active {
-  opacity: 1;
 }
 
 .about-me-input-error {
