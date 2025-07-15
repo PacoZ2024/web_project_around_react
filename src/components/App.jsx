@@ -69,13 +69,15 @@ export default function App() {
   async function handleCardDelete(card) {
     await api
       .deleteCard(card._id)
-      .then(
+      .then((resp) => {
         setCards((state) =>
           state.filter((currentCard) => {
             return currentCard._id != card._id;
           })
-        )
-      )
+        );
+        console.log(resp.message);
+        handleClosePopup();
+      })
       .catch((err) => console.log(err));
   }
 
